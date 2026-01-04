@@ -1,0 +1,53 @@
+_wandb:
+    value:
+        cli_version: 0.23.1
+        e:
+            2dl4z4cl8d9ic7z5qcz52qvnf757ha7l:
+                cpu_count: 4
+                cpu_count_logical: 8
+                disk:
+                    /:
+                        total: "126710968320"
+                        used: "117664247808"
+                email: gelilakassaye6@gmail.com
+                executable: C:\Users\kewtiiiii\anaconda3\python.exe
+                git:
+                    commit: f0f8a541f3d872f8e7b755c93637c10f94e453fc
+                    remote: https://github.com/GelilaK12/engine-cycle-forecast.git
+                host: DESKTOP-1MKIQG9
+                memory:
+                    total: "7469842432"
+                os: Windows-10-10.0.19045-SP0
+                program: -m scripts.02_train_model
+                python: CPython 3.13.5
+                root: C:\Users\kewtiiiii\Desktop\Projects\engine-cycle-forecast
+                startedAt: "2026-01-03T19:27:11.000253Z"
+                writerId: 2dl4z4cl8d9ic7z5qcz52qvnf757ha7l
+        m: []
+        python_version: 3.13.5
+        t:
+            "1":
+                - 5
+                - 53
+                - 105
+            "2":
+                - 5
+                - 53
+                - 105
+            "3":
+                - 2
+                - 13
+            "4": 3.13.5
+            "5": 0.23.1
+            "8":
+                - 3
+            "12": 0.23.1
+            "13": windows-amd64
+max_depth:
+    value: 20
+min_samples_leaf:
+    value: 1
+min_samples_split:
+    value: 2
+n_estimators:
+    value: 200

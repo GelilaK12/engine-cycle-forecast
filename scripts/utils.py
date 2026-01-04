@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 
+
 def save_plot(fig, filename, figures_path):
     path = os.path.join(figures_path, filename)
     fig.savefig(path, dpi=300, bbox_inches="tight")
@@ -22,16 +23,26 @@ def correlation_heatmap(df, figures_path):
     ax.set_title("Correlation Heatmap")
     save_plot(fig, "correlation_heatmap.png", figures_path)
 
-def sensor_degradation_plot(df, sensor, sample_engines, figures_path):
-    fig, ax = plt.subplots(figsize=(12,6))
-    for eng in sample_engines:
-        subset = df[df["unit"]==eng]
-        ax.plot(subset["cycle"], subset[sensor], label=f"Engine {eng}")
-    ax.set_xlabel("Cycle")
-    ax.set_ylabel(sensor)
-    ax.set_title(f"{sensor} Degradation Over Cycles (Sample Engines)")
-    ax.legend()
-    save_plot(fig, f"{sensor}_degradation.png", figures_path)
+def sensor_degradation_plot(df, sensor, engines, figures_path, highlight_outliers=False):
+    plt.figure(figsize=(10,6))
+    for engine in engines:
+        engine_df = df[df["unit"] == engine]
+        plt.plot(engine_df["cycle"], engine_df[sensor], alpha=0.7)
+    if highlight_outliers:
+        plt.title(f"{sensor} degradation (Outlier Engines Highlighted)")
+    else:
+        plt.title(f"{sensor} degradation")
+    plt.xlabel("Cycle")
+    plt.ylabel(sensor)
+    plt.tight_layout()
+
+    filename = f"{sensor}_degradation.png"
+    if highlight_outliers:
+         filename = f"{sensor}_degradation_outliers.png"
+
+    plt.savefig(os.path.join(figures_path, filename), dpi=300)
+    plt.close()
+
 
 def compute_rul(df):
     max_cycles = df.groupby("unit")["cycle"].max().reset_index()

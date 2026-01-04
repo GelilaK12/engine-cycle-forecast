@@ -1,0 +1,26 @@
+{
+  "os":  "Windows-10-10.0.19045-SP0",
+  "python":  "CPython 3.13.5",
+  "startedAt":  "2026-01-03T21:12:59.545265Z",
+  "program":  "-m scripts.02_train_model",
+  "git":  {
+    "remote":  "https://github.com/GelilaK12/engine-cycle-forecast.git",
+    "commit":  "f0f8a541f3d872f8e7b755c93637c10f94e453fc"
+  },
+  "email":  "gelilakassaye6@gmail.com",
+  "root":  "C:\\Users\\kewtiiiii\\Desktop\\Projects\\engine-cycle-forecast",
+  "host":  "DESKTOP-1MKIQG9",
+  "executable":  "C:\\Users\\kewtiiiii\\anaconda3\\python.exe",
+  "cpu_count":  4,
+  "cpu_count_logical":  8,
+  "disk":  {
+    "/":  {
+      "total":  "126710968320",
+      "used":  "117074333696"
+    }
+  },
+  "memory":  {
+    "total":  "7469842432"
+  },
+  "writerId":  "qanpj7m35a5yn1vxmqr4an4xklicgcnm"
+}

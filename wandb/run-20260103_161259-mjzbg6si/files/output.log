@@ -1,0 +1,12 @@
+Fitting 3 folds for each of 12 candidates, totalling 36 fits
+✅ Model metrics saved. MSE: 300.48, R2: 0.93
+✅ Trained RF model saved.
+ Feature importance saved.
+Number of outliers in predictions: 310
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\kewtiiiii\Desktop\Projects\engine-cycle-forecast\scripts\02_train_model.py", line 111, in <module>
+    plt.scatter(y_test[outlier_idx], y_pred[outlier_idx], color="red", label="Outliers")
+                                     ~~~~~~^^^^^^^^^^^^^
+IndexError: index 17437 is out of bounds for axis 0 with size 6190

@@ -1,0 +1,4 @@
+Fitting 3 folds for each of 12 candidates, totalling 36 fits
+✅ Model metrics saved. MSE: 300.48, R2: 0.93
+✅ Trained RF model saved.
+ Feature importance saved.

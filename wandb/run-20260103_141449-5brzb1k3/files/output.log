@@ -1,0 +1,27 @@
+Fitting 3 folds for each of 12 candidates, totalling 36 fits
+✅ Model metrics saved. MSE: 300.48, R2: 0.93
+✅ Trained RF model saved.
+ Feature importance saved.
+[34m[1mwandb[0m: [32m[41mERROR[0m Attempted to change value of key "max_depth" from None to 20
+[34m[1mwandb[0m: [32m[41mERROR[0m If you really want to do this, pass allow_val_change=True to config.update()
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\kewtiiiii\Desktop\Projects\engine-cycle-forecast\scripts\02_train_model.py", line 113, in <module>
+    wandb.config.update(search.best_params_)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kewtiiiii\anaconda3\Lib\site-packages\wandb\sdk\wandb_config.py", line 187, in update
+    sanitized = self._update(d, allow_val_change)
+  File "C:\Users\kewtiiiii\anaconda3\Lib\site-packages\wandb\sdk\wandb_config.py", line 180, in _update
+    sanitized = self._sanitize_dict(
+        parsed_dict, allow_val_change, ignore_keys=locked_keys
+    )
+  File "C:\Users\kewtiiiii\anaconda3\Lib\site-packages\wandb\sdk\wandb_config.py", line 267, in _sanitize_dict
+    k, v = self._sanitize(k, v, allow_val_change)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kewtiiiii\anaconda3\Lib\site-packages\wandb\sdk\wandb_config.py", line 288, in _sanitize
+    raise config_util.ConfigError(
+    ...<4 lines>...
+    )
+wandb.sdk.lib.config_util.ConfigError: Attempted to change value of key "max_depth" from None to 20
+If you really want to do this, pass allow_val_change=True to config.update()

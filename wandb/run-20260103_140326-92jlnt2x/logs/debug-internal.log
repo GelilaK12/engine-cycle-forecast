@@ -1,0 +1,12 @@
+{"time":"2026-01-03T14:03:30.0848727-05:00","level":"INFO","msg":"stream: starting","core version":"0.23.1"}
+{"time":"2026-01-03T14:03:31.2089544-05:00","level":"INFO","msg":"stream: created new stream","id":"92jlnt2x"}
+{"time":"2026-01-03T14:03:31.2094874-05:00","level":"INFO","msg":"handler: started","stream_id":"92jlnt2x"}
+{"time":"2026-01-03T14:03:31.2236652-05:00","level":"INFO","msg":"stream: started","id":"92jlnt2x"}
+{"time":"2026-01-03T14:03:31.2236652-05:00","level":"INFO","msg":"writer: started","stream_id":"92jlnt2x"}
+{"time":"2026-01-03T14:03:31.2236652-05:00","level":"INFO","msg":"sender: started","stream_id":"92jlnt2x"}
+{"time":"2026-01-03T14:08:34.4600073-05:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/files/gelilakassaye6-vsco/cmaps_rul_rf/92jlnt2x/file_stream\": net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2026-01-03T14:09:12.8037914-05:00","level":"INFO","msg":"stream: closing","id":"92jlnt2x"}
+{"time":"2026-01-03T14:09:13.3724336-05:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-01-03T14:09:13.6665929-05:00","level":"INFO","msg":"handler: closed","stream_id":"92jlnt2x"}
+{"time":"2026-01-03T14:09:13.6996452-05:00","level":"INFO","msg":"sender: closed","stream_id":"92jlnt2x"}
+{"time":"2026-01-03T14:09:13.6996452-05:00","level":"INFO","msg":"stream: closed","id":"92jlnt2x"}

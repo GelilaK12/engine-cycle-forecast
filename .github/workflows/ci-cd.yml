@@ -32,7 +32,7 @@ jobs:
       # 4️⃣ Run model and tests
       - name: Train model
         run: |
-           python scripts/train_model.py
+           python -m scripts.train_model
 
       - name: Run tests
         run: |

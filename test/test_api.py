@@ -5,10 +5,8 @@ import numpy as np
 
 client = TestClient(app)
 
-# Dummy model for testing
 class DummyModel:
     def predict(self, X):
-        # Always returns 42 for testing
         return np.array([42.0])
 
 @pytest.fixture(autouse=True)
@@ -21,7 +19,7 @@ def inject_dummy_model(monkeypatch):
     main.model = DummyModel()
 
 def test_predict_success():
-    sensor_input = [1.0] * 21  # 21 features
+    sensor_input = [1.0] * 21  
     response = client.post("/predict", json={"sensor_values": sensor_input})
     
     assert response.status_code == 200
@@ -30,7 +28,7 @@ def test_predict_success():
     assert data["rul_prediction"] == 42.0
 
 def test_predict_invalid_length():
-    sensor_input = [1.0] * 5  # Less than 21
+    sensor_input = [1.0] * 5  
     response = client.post("/predict", json={"sensor_values": sensor_input})
     
     assert response.status_code == 200

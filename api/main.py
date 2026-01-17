@@ -38,7 +38,6 @@ def load_model_on_startup():
             f.write(r.content)
         print("Model downloaded successfully.")
 
-    # Load model into memory
     model = joblib.load(MODEL_PATH)
     print("Model loaded into memory.")
 

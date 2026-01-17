@@ -29,7 +29,11 @@ jobs:
           pip install pytest requests
           pip install pytest requests httpx
 
-      # 4️⃣ Run tests
+      # 4️⃣ Run model and tests
+      - name: Train model
+        run: |
+           python scripts/train_model.py
+
       - name: Run tests
         run: |
           pytest --maxfail=1 --disable-warnings -q

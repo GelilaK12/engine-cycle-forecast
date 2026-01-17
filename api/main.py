@@ -14,7 +14,7 @@ app = FastAPI(title="RUL Predictor API")
 # ----------------------------
 MODEL_PATH = Path("artifacts/models/rf_rul_model.pkl")
 MODEL_URL = "https://github.com/GelilaK12/engine-cycle-forecast/releases/download/v1.0/rf_rul_model.pkl"  
-model = None  
+model = None  # Global variable to hold the model
 
 # ----------------------------
 # Pydantic request schema
@@ -28,10 +28,8 @@ class SensorRequest(BaseModel):
 @app.on_event("startup")
 def load_model_on_startup():
     global model
-    # Ensure folder exists
     MODEL_PATH.parent.mkdir(parents=True, exist_ok=True)
 
-    # Download model if missing
     if not MODEL_PATH.exists():
         print(f"Downloading model from {MODEL_URL}...")
         r = requests.get(MODEL_URL)

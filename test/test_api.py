@@ -1,19 +1,39 @@
+import pytest
 from fastapi.testclient import TestClient
 from api.main import app
-from unittest.mock import patch
-from sklearn.dummy import DummyRegressor
+import numpy as np
 
 client = TestClient(app)
 
-@patch("api.main.load_model")
-def test_predict(mock_load):
-    # Dummy model
-    model = DummyRegressor(strategy="mean")
-    model.fit([[0]*21], [0])
-    mock_load.return_value = model
+# Dummy model for testing
+class DummyModel:
+    def predict(self, X):
+        # Always returns 42 for testing
+        return np.array([42.0])
 
-    sensor_input = [1.0]*21
+@pytest.fixture(autouse=True)
+def inject_dummy_model(monkeypatch):
+    """
+    Replace the real model with a dummy in tests.
+    This avoids downloading or loading the real model.
+    """
+    import api.main as main
+    main.model = DummyModel()
+
+def test_predict_success():
+    sensor_input = [1.0] * 21  # 21 features
     response = client.post("/predict", json={"sensor_values": sensor_input})
-
+    
     assert response.status_code == 200
-    assert "rul_prediction" in response.json()
+    data = response.json()
+    assert "rul_prediction" in data
+    assert data["rul_prediction"] == 42.0
+
+def test_predict_invalid_length():
+    sensor_input = [1.0] * 5  # Less than 21
+    response = client.post("/predict", json={"sensor_values": sensor_input})
+    
+    assert response.status_code == 200
+    data = response.json()
+    assert "error" in data
+    assert data["error"] == "Expected 21 sensor values."

@@ -6,7 +6,7 @@ import joblib
 app = FastAPI()   
 
 MODEL_PATH = Path("artifacts/models/rf_rul_model.pkl")
-EXPECTED_FEATURES = 21  # fixed since your model expects 21 features
+EXPECTED_FEATURES = 21  #
 
 class SensorRequest(BaseModel):
     sensor_values: list[float]

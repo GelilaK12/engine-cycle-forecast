@@ -10,7 +10,6 @@ os.makedirs(os.path.join(PROJECT_ROOT, "data", "processed"), exist_ok=True)
 os.makedirs(figures_path, exist_ok=True)
 
 def load_raw():
-    """Load and preprocess the raw FD001 data"""
     df = pd.read_csv(raw_path, sep=r"\s+", header=None)
     cols = ["unit", "cycle"] + [f"op_setting_{i}" for i in range(1,4)] + [f"sensor_{i}" for i in range(1,22)]
     df.columns = cols

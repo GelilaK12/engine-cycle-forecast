@@ -2,9 +2,9 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "feature/ci-cd-api" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "feature/ci-cd-api" ]
 
 jobs:
   test_and_build:
@@ -56,4 +56,4 @@ jobs:
       # 3️⃣ Push Docker image
       - name: Push Docker image
         run: |
-          docker push yourdockerhub/engine-cycle-api:latest
+          docker push gkass123/engine-cycle-api:latest

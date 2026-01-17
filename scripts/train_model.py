@@ -1,12 +1,14 @@
 import os
+import joblib
 import pandas as pd
 import numpy as np
 from sklearn.ensemble import RandomForestRegressor
-
+from pathlib import Path
 from scripts import data_processing
 
 PROCESSED_PATH = "data/processed/engine_data_processed.csv"
-
+MODEL_DIR = Path("artifacts/models")
+MODEL_DIR.mkdir(parents=True, exist_ok=True) 
 
 def train():
     """
@@ -45,5 +47,6 @@ def train():
         random_state=42
     )
     model.fit(X, y)
-
+    joblib.dump(model, MODEL_DIR / "rf_rul_model.pkl")
+    print("Model saved!")
     return model

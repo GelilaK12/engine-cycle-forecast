@@ -1,22 +1,29 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+from pathlib import Path
 import joblib
 import numpy as np
 
 app = FastAPI()   
 
 model = joblib.load("artifacts/models/rf_rul_model.pkl")
+MODEL_PATH = Path("artifacts/models/rf_rul_model.pkl")
+
 EXPECTED_FEATURES = model.n_features_in_
 
 class SensorRequest(BaseModel):
     sensor_values: list[float]
 
+def load_model():
+    if not MODEL_PATH.exists():
+        raise FileNotFoundError(f"Model not found: {MODEL_PATH}")
+    return joblib.load(MODEL_PATH)
+
 @app.post("/predict")
 def predict(req: SensorRequest):
-    if len(req.sensor_values) != EXPECTED_FEATURES:
-        return {"error": f"Expected {EXPECTED_FEATURES} sensor values."}
-
-    X = np.array(req.sensor_values).reshape(1, -1)
-    pred = model.predict(X)[0]
-    return {"rul_prediction": float(pred)}
-
+    if len(req.sensor_values) != 21:
+        return {"error": "Expected 21 sensor values."}
+    
+    model = load_model()
+    pred = model.predict([req.sensor_values])
+    return {"rul_prediction": float(pred[0])}

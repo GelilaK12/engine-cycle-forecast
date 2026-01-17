@@ -27,8 +27,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install pytest requests
-          pip install pytest requests httpx
-
+          
       # 4️⃣ Run model and tests
       - name: Train model
         run: |

@@ -11,10 +11,7 @@ class DummyModel:
 
 @pytest.fixture(autouse=True)
 def inject_dummy_model(monkeypatch):
-    """
-    Replace the real model with a dummy in tests.
-    This avoids downloading or loading the real model.
-    """
+    
     import api.main as main
     main.model = DummyModel()
 

@@ -3,11 +3,7 @@ from pydantic import BaseModel
 from pathlib import Path
 import joblib
 import requests
-
-# ----------------------------
-# FastAPI app
-# ----------------------------
-app = FastAPI(title="RUL Predictor API")
+from contextlib import asynccontextmanager
 
 # ----------------------------
 # Model settings
@@ -23,13 +19,15 @@ class SensorRequest(BaseModel):
     sensor_values: list[float]  # Expecting 21 sensor values
 
 # ----------------------------
-# Load model at startup
+# Lifespan handler for startup/shutdown
 # ----------------------------
-@app.on_event("startup")
-def load_model_on_startup():
+@asynccontextmanager
+async def lifespan(app: FastAPI):
     global model
+    # Ensure model directory exists
     MODEL_PATH.parent.mkdir(parents=True, exist_ok=True)
 
+    # Download model if it doesn't exist
     if not MODEL_PATH.exists():
         print(f"Downloading model from {MODEL_URL}...")
         r = requests.get(MODEL_URL)
@@ -38,8 +36,17 @@ def load_model_on_startup():
             f.write(r.content)
         print("Model downloaded successfully.")
 
+    # Load model
     model = joblib.load(MODEL_PATH)
     print("Model loaded into memory.")
+
+    yield  # Application runs here
+    # You can add shutdown code after this if needed
+
+# ----------------------------
+# FastAPI app
+# ----------------------------
+app = FastAPI(title="RUL Predictor API", lifespan=lifespan)
 
 # ----------------------------
 # Prediction endpoint with padding
